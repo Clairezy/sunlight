@@ -2,10 +2,14 @@ const slider = document.getElementById("daynight-slider");
 const toggle = document.getElementById("daynight-toggle");
 const body = document.body;
 
-// Default mode: start in night mode (true = night, false = day)
-let isDark = true;
+// Load saved state from localStorage or use defaults
+let isDark = localStorage.getItem("isDark") === null ? true : localStorage.getItem("isDark") === "true";
+let sliderValue = localStorage.getItem("sliderValue") === null ? 51 : parseInt(localStorage.getItem("sliderValue"), 10);
+
+// Apply initial mode
 body.classList.toggle("dark", isDark);
-toggle.setAttribute("aria-pressed", String(isDark)); // accessibility: reflect initial state
+toggle.setAttribute("aria-pressed", String(isDark));
+slider.value = sliderValue;
 
 // Key colors for daytime interpolation
 const keyColors = [
@@ -47,17 +51,12 @@ function interpolateColor(value) {
 }
 
 // Update background and text
-// rawValue = the slider's numeric value (0–100) as the user sees it.
-// We compute an effective value that the color system uses depending on isDark.
 function updateUI(rawValue) {
-  // If in night mode, interpret slider percentage from the *night* side:
-  // this flips how the numeric slider is mapped to colors without changing the slider itself.
   const effectiveValue = isDark ? (100 - rawValue) : rawValue;
 
   const bgColor = interpolateColor(effectiveValue);
   body.style.backgroundColor = bgColor;
 
-  // Contrast-aware text uses the effective value
   const textColor = effectiveValue < 50 ? "#fff" : "#0f131c";
   body.style.color = textColor;
 
@@ -65,25 +64,28 @@ function updateUI(rawValue) {
     panel.style.color = textColor;
   });
 
-  // Show the slider number as the user expects (do NOT overwrite the slider position here)
   document.getElementById("daynight-value").textContent = `${rawValue}%`;
+
+  // Save state
+  localStorage.setItem("isDark", isDark);
+  localStorage.setItem("sliderValue", rawValue);
 }
 
-// Slider input — user moves the slider, we update UI using the slider's raw value
+// Slider input
 slider.addEventListener("input", e => {
-  updateUI(parseInt(e.target.value, 10));
+  const val = parseInt(e.target.value, 10);
+  updateUI(val);
 });
 
-// Toggle button — flip the interpretation mode, but keep the slider where it is
+// Toggle button
 toggle.addEventListener("click", () => {
   isDark = !isDark;
   body.classList.toggle("dark", isDark);
   toggle.setAttribute("aria-pressed", String(isDark));
-  // Re-render using current slider value (do not change slider.value here)
   updateUI(parseInt(slider.value, 10));
 });
 
-// Spacebar toggle (same as button)
+// Spacebar toggle
 document.addEventListener("keydown", event => {
   if (event.key === " " || event.keyCode === 32) {
     event.preventDefault();
@@ -94,5 +96,5 @@ document.addEventListener("keydown", event => {
   }
 });
 
-// Initialize UI (keeps slider at its stored value — e.g., 49 — but renders in night mode)
-updateUI(parseInt(slider.value, 10));
+// Initialize UI
+updateUI(sliderValue);

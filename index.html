@@ -16,6 +16,15 @@
 <header class="site-header" role="banner" aria-label="Site header">
   <div class="site-title">Claire K. Zwicker</div>
 
+  <nav class="site-nav" role="navigation" aria-label="Main navigation">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="cv.html">CV</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="undergrad.html">Undergraduate Research</a></li>
+    </ul>
+  </nav>
+
   <div class="sun-controls" role="region" aria-label="Day and night controls">
     <button id="daynight-toggle" type="button" aria-pressed="true" aria-label="Toggle day and night">
       Toggle Time of Day
@@ -28,159 +37,112 @@
   </div>
 </header>
 
-
-  <div id="dappled-light">
-    <div id="glow"></div>
-    <div id="glow-bounce"></div>
-    <div class="perspective">
-      <div id="leaves">
-        <svg style="width: 0; height: 0; position: absolute;">
-          <defs>
-            <filter id="wind" x="-20%" y="-20%" width="140%" height="140%">
-              <feTurbulence type="fractalNoise" numOctaves="4" seed="1">
-                <animate attributeName="baseFrequency" dur="10s" keyTimes="0;0.33;0.66;1"
-                  values="0.005 0.003;0.01 0.009;0.008 0.004;0.005 0.003" repeatCount="indefinite" />
-              </feTurbulence>
-              <feDisplacementMap in="SourceGraphic">
-                <animate attributeName="scale" dur="20s" keyTimes="0;0.25;0.5;0.75;1"
-                  values="45;55;75;55;45" repeatCount="indefinite" />
-              </feDisplacementMap>
-            </filter>
-          </defs>
-        </svg>
-      </div>
-
-      <div id="blinds">
-        <div class="shutters">
-          <div class="shutter"></div>
-          <div class="shutter"></div>
-          <div class="shutter"></div>
-          <div class="shutter"></div>
-          <div class="shutter"></div>
-          <div class="shutter"></div>
-          <div class="shutter"></div>
-          <div class="shutter"></div>
-          <div class="shutter"></div>
-          <div class="shutter"></div>
-          <div class="shutter"></div>
-          <div class="shutter"></div>
-          <div class="shutter"></div>
-          <div class="shutter"></div>
-          <div class="shutter"></div>
-        </div>
-        <div class="vertical">
-          <div class="bar"></div>
-          <div class="bar"></div>
-        </div>
-      </div>
+<div id="dappled-light">
+  <div id="glow"></div>
+  <div id="glow-bounce"></div>
+  <div class="perspective">
+    <div id="leaves">
+      <svg style="width: 0; height: 0; position: absolute;">
+        <defs>
+          <filter id="wind" x="-20%" y="-20%" width="140%" height="140%">
+            <feTurbulence type="fractalNoise" numOctaves="4" seed="1">
+              <animate attributeName="baseFrequency" dur="10s" keyTimes="0;0.33;0.66;1"
+                values="0.005 0.003;0.01 0.009;0.008 0.004;0.005 0.003" repeatCount="indefinite" />
+            </feTurbulence>
+            <feDisplacementMap in="SourceGraphic">
+              <animate attributeName="scale" dur="20s" keyTimes="0;0.25;0.5;0.75;1"
+                values="45;55;75;55;45" repeatCount="indefinite" />
+            </feDisplacementMap>
+          </filter>
+        </defs>
+      </svg>
     </div>
 
-    <div id="progressive-blur">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+    <div id="blinds">
+      <div class="shutters">
+        <div class="shutter"></div>
+        <div class="shutter"></div>
+        <div class="shutter"></div>
+        <div class="shutter"></div>
+        <div class="shutter"></div>
+        <div class="shutter"></div>
+        <div class="shutter"></div>
+        <div class="shutter"></div>
+        <div class="shutter"></div>
+        <div class="shutter"></div>
+        <div class="shutter"></div>
+        <div class="shutter"></div>
+        <div class="shutter"></div>
+        <div class="shutter"></div>
+        <div class="shutter"></div>
+      </div>
+      <div class="vertical">
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
     </div>
   </div>
 
-  <article>
-    
-    <section class="glass-panel" id="about">
-      <h1>Claire K. Zwicker</h1>
-      <p>Astronomy • PhD Student • Research in young stellar populations</p>
-    </section>
+  <div id="progressive-blur">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
 
-    <section class="glass-panel" id="about">
-      <h2>About</h2>
-      <p>I am a graduate student studying the connection between lithium and stellar rotation in young populations. My work combines observational data with data analysis & visualization to constrain physical models and interpret statistical tests. I care deeply about scientific communication, outreach, and lifelong learning.</p>
-    </section>
+<article>
+  
+  <section class="glass-panel" id="about">
+    <h1>Claire K. Zwicker</h1>
+    <p>Astronomy • PhD Student • Research in young stellar populations</p>
+  </section>
 
-    <section class="glass-panel" id="research">
-      <h2>Research Overview</h2>
-      <p>My current and past projects include:</p>
-      <ul>
-        <li><strong>Lithium-rotation connection</strong> for young stars within the Upper Scorpius region.</li>
-        <li><strong>Age dating</strong> TOI 7032, a peculiar host star that may help us understand more on the origins of life.</li>
-        <li><strong>Bayesian data analysis</strong> of an Open Cluster to study the dynamical evolution of its stellar members. </li>
-      </ul>
-      <!-- <p>For code and other various projects, see the section below</p> -->
-    </section>
+  <section class="glass-panel" id="about">
+    <h2>About</h2>
+    <p>I am a graduate student studying the connection between lithium and stellar rotation in young populations. My work combines observational data with data analysis & visualization to constrain physical models and interpret statistical tests. I care deeply about scientific communication, outreach, and lifelong learning.</p>
+  </section>
 
-    <section class="glass-panel" id="projects">
-      <h2>Projects & Code</h2>
-      <p>I produce and maintain workflows supporting my research. A few highlights:</p>
-      <ul>
-        <li><strong>Coming soon!</strong> (in progress). </a></li>
-        <!-- <li><strong>stellar-evo-tools</strong> — tools for generating and comparing stellar evolutionary tracks (includes Jupyter examples). <a href="https://github.com/username/stellar-evo-tools" target="_blank" rel="noopener">GitHub</a></li>
-        <li><strong>ism-spectools</strong> — scripts and notebooks for ISM spectral fitting and visualization. <a href="https://github.com/username/ism-spectools" target="_blank" rel="noopener">GitHub</a></li>
-      </ul> -->
-      </section>
+  <section class="glass-panel" id="research">
+    <h2>Research Overview</h2>
+    <p>My current and past projects include:</p>
+    <ul>
+      <li><strong>Lithium-rotation connection</strong> for young stars within the Upper Scorpius region.</li>
+      <li><strong>Age dating</strong> TOI 7032, a peculiar host star that may help us understand more on the origins of life.</li>
+      <li><strong>Bayesian data analysis</strong> of an Open Cluster to study the dynamical evolution of its stellar members. </li>
+    </ul>
+  </section>
 
-<section class="glass-panel" id="publications">
-  <h2>Peer-Reviewed Publications & Manuscripts</h2>
+  <section class="glass-panel" id="projects">
+    <h2>Projects & Code</h2>
+    <p>I produce and maintain workflows supporting my research. A few highlights:</p>
+    <ul>
+      <li><strong>Coming soon!</strong> (in progress). </li>
+    </ul>
+  </section>
 
-  <ol class="pub-list">
-    <li>
-      <strong>Stellar Rotation and Microturbulence as Key Predictors in a Young Stellar Population: Multivariate Regression Analysis in Upper Scorpius</strong>
-      — <span class="pub-authors"><strong>Claire Zwicker</strong>, Melinda Soares-Furtado, Jessi Cisewski Kehe, Kendall Sullivan</span>.
-      <em>In preparation</em>.
-      <!-- <span class="pub-links">[<a class="ads-link" href="https://ui.adsabs.harvard.edu/search/q=Stellar%20Rotation%20and%20Microturbulence%20as%20Key%20Predictors%20in%20a%20Young%20Stellar%20Population%3A%20Multivariate%20Regression%20Analysis%20in%20Upper%20Scorpius&sort=date%20desc" target="_blank" rel="noopener">NASA ADS</a>]</span>
-    </li> -->
+  <section class="glass-panel" id="publications">
+    <h2>Peer-Reviewed Publications & Manuscripts</h2>
+    <ol class="pub-list">
+      <li><strong>Stellar Rotation and Microturbulence as Key Predictors in a Young Stellar Population</strong> — <span class="pub-authors"><strong>Claire Zwicker</strong>, Melinda Soares-Furtado, Jessi Cisewski Kehe, Kendall Sullivan</span>. <em>In preparation</em>.</li>
+      <li><strong>Investigation of TOI 7032</strong> — <span class="pub-authors">Maxwell Kroft <em>et al.</em> (including <strong>Claire Zwicker</strong>)</span>. <em>In preparation</em>.</li>
+      <li><strong>Investigating Mass Segregation of the Binary Stars in the Open Cluster NGC 6819</strong> — <span class="pub-authors"><strong>Claire Zwicker</strong>, Aaron M. Geller, Anna C. Childs, Erin Motherway, Ted von Hippel</span>. <em>Published in <abbr title="The Astrophysical Journal">ApJ</abbr></em>.</li>
+      <li><strong>Goodbye to Chi-by-Eye: A Bayesian Analysis of Photometric Binaries in Six Open Clusters</strong> — <span class="pub-authors">Anna C. Childs, Aaron M. Geller, Ted von Hippel, Erin Motherway, <strong>Claire Zwicker</strong></span>. <em>Published in <abbr title="The Astrophysical Journal">ApJ</abbr></em>.</li>
+      <li><strong>Tracing the Origins of Mass Segregation in M35</strong> — <span class="pub-authors">Erin Motherway, Aaron M. Geller, Anna C. Childs, <strong>Claire Zwicker</strong>, Ted von Hippel</span>. <em>Published in <abbr title="The Astrophysical Journal Letters">ApJL</abbr></em>.</li>
+    </ol>
+  </section>
 
-    <li>
-      <strong>Investigation of TOI 7032</strong>
-      — <span class="pub-authors">Maxwell Kroft <em>et al.</em> (including <strong>Claire Zwicker</strong>)</span>.
-      <em>In preparation</em>.
-      <!-- <span class="pub-links">[<a class="ads-link" href="https://ui.adsabs.harvard.edu/search/q=Investigation%20of%20TOI%207032&sort=date%20desc" target="_blank" rel="noopener">NASA ADS</a>]</span>
-    </li> -->
+  <section class="glass-panel" id="contact">
+    <h2>Contact & Presence</h2>
+    <p>Email: <a href="mailto:czwicker@wisc.edu">czwicker@wisc.edu</a></p>
+    <p>ORCID ID: <a href="https://orcid.org/0000-0003-3695-2655">0000-0003-3695-2655</a></p>
+    <p>Github: <a href="https://github.com/clairezwicker" target="_blank" rel="noopener">github.com/clairezwicker</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/claire-zwicker-74a7b4250/" target="_blank" rel="noopener">linkedin.com/in/claire-zwicker-74a7b4250/</a></p>
+  </section>
 
-    <li>
-      <strong>Investigating Mass Segregation of the Binary Stars in the Open Cluster NGC 6819</strong>
-      — <span class="pub-authors"><strong>Claire Zwicker</strong>, Aaron M. Geller, Anna C. Childs, Erin Motherway, Ted von Hippel</span>.
-      <em>Published in <abbr title="The Astrophysical Journal">ApJ</abbr></em>.
-      <span class="pub-links">[<a class="ads-link" href="https://ui.adsabs.harvard.edu/search/q=Investigating%20Mass%20Segregation%20of%20the%20Binary%20Stars%20in%20the%20Open%20Cluster%20NGC%206819&sort=date%20desc" target="_blank" rel="noopener">NASA ADS</a>]</span>
-    </li>
+</article>
 
-    <li>
-      <strong>Goodbye to Chi-by-Eye: A Bayesian Analysis of Photometric Binaries in Six Open Clusters</strong>
-      — <span class="pub-authors">Anna C. Childs, Aaron M. Geller, Ted von Hippel, Erin Motherway, <strong>Claire Zwicker</strong></span>.
-      <em>Published in <abbr title="The Astrophysical Journal">ApJ</abbr></em>.
-      <span class="pub-links">[<a class="ads-link" href="https://ui.adsabs.harvard.edu/search/q=Goodbye%20to%20Chi-by-Eye%3A%20A%20Bayesian%20Analysis%20of%20Photometric%20Binaries%20in%20Six%20Open%20Clusters&sort=date%20desc" target="_blank" rel="noopener">NASA ADS</a>]</span>
-    </li>
-
-    <li>
-      <strong>Tracing the Origins of Mass Segregation in M35: Evidence for Primordially Segregated Binaries</strong>
-      — <span class="pub-authors">Erin Motherway, Aaron M. Geller, Anna C. Childs, <strong>Claire Zwicker</strong>, Ted von Hippel</span>.
-      <em>Published in <abbr title="The Astrophysical Journal Letters">ApJL</abbr></em>.
-      <span class="pub-links">[<a class="ads-link" href="https://ui.adsabs.harvard.edu/search/q=Tracing%20the%20Origins%20of%20Mass%20Segregation%20in%20M35%3A%20Evidence%20for%20Primordially%20Segregated%20Binaries&sort=date%20desc" target="_blank" rel="noopener">NASA ADS</a>]</span>
-    </li>
-  </ol>
-</section>
-
-
-
-    <section class="glass-panel" id="cv">
-    <h2>CV</h2>
-    <embed 
-        src="data/Claire_Zwicker_CV.pdf" 
-        type="application/pdf" 
-        width="100%" 
-        height="600px" />
-    <p>If you prefer, you can also <a href="data/Claire_Zwicker_CV.pdf" target="_blank" rel="noopener">download my CV as a PDF</a>.</p>
-    </section>
-
-
-    <section class="glass-panel" id="contact">
-      <h2>Contact & Presence</h2>
-      <p>Email: <a href="mailto:claire@example.com">czwicker@wisc.edu</a></p>
-      <p>ORCID ID: <a href="https://orcid.org/0000-0003-3695-2655">0000-0003-3695-2655</a></p>
-      <p>Github: <a href="https://github.com/clairezwicker" target="_blank" rel="noopener">github.com/clairezwicker</a></p>
-      <p>LinkedIn: <a href="https://www.linkedin.com/in/claire-zwicker-74a7b4250/" target="_blank" rel="noopener">linkedin.com/in/claire-zwicker-74a7b4250/</a></p>
-      </section>
-
-  </article>
-
-  <script src="./index.js"></script>
+<script src="./index.js"></script>
 </body>
 <footer class="site-footer glass-panel" style="text-align: center; font-size: 0.9rem; margin-top: 2rem; padding: 1rem;">
   <p>
@@ -190,5 +152,3 @@
 </footer>
 
 </html>
-
-
