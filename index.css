@@ -40,12 +40,12 @@ body {
 
 body.animation-ready {
   animation-play-state: running;
-  animation-duration: 1s;
+  animation-duration: 2s;
   animation-name: sunrise;
 }
 
 body.animation-ready.dark {
-  animation-duration: 1.7s;
+  animation-duration: 3s;
   animation-name: sunset;
 }
 
