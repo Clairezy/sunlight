@@ -1,3 +1,23 @@
+/*
+  index.css — merged version
+  - Original stylesheet you provided is preserved below.
+  - Added a small :root with a single scale variable (--base-font-size) for easy global resizing.
+  - Added responsive HERO styles (.hero, .hero-photo, .hero-text) so the photo, name, and short about sit in the same panel.
+  - Enlarged heading/body type using calc(...) so everything scales when you tweak --base-font-size.
+
+  To change the global size: edit --base-font-size near the top (default: 18px).
+*/
+
+:root {
+  --base-font-size: 18px;
+  --hero-photo-size: 160px;
+  --max-content-width: 1100px;
+}
+
+html { font-size: var(--base-font-size); }
+
+/* ---------- Original stylesheet (preserved) ---------- */
+
 article {
   margin: 0 auto;
   max-width: 70%;
@@ -430,3 +450,123 @@ article p, article h1 {
 .sun-controls {
   margin-left: 0;
 }
+
+/* ---------- Additions: global type scale & HERO panel ---------- */
+
+/* slightly larger base text inside panels for legibility */
+.glass-panel, .site-footer {
+  font-size: 1rem; /* scales from --base-font-size */
+}
+
+/* headings scaled from base font-size so changing --base-font-size updates everything */
+h1 { font-size: calc(var(--base-font-size) * 2.2); margin: 0 0 .25rem 0; }
+h2 { font-size: calc(var(--base-font-size) * 1.35); margin-top: 0; }
+p, li { font-size: calc(var(--base-font-size) * 1.02); }
+
+/* HERO layout (photo, name, short about inside same panel) */
+.hero {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+  padding: 2rem;
+  max-width: var(--max-content-width);
+  margin: 1.5rem auto;
+  box-sizing: border-box;
+  background: rgba(255,255,255,0.06); /* subtle contrast so it reads on top of background */
+}
+
+.hero-photo {
+  flex: 0 0 auto;
+  width: var(--hero-photo-size);
+  height: var(--hero-photo-size);
+  border-radius: 12px;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.03));
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.hero-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-text {
+  flex: 1 1 auto;
+  min-width: 240px;
+}
+
+.tagline {
+  font-weight: 500;
+  margin: 0.25rem 0 0.6rem 0;
+  letter-spacing: 0.02em;
+}
+
+.about-short {
+  margin: 0;
+  opacity: 0.95;
+}
+
+
+
+@media (max-width: 720px) {
+  :root { --hero-photo-size: 140px; }
+  .hero { flex-direction: column; text-align: center; gap: 1rem; padding: 1.25rem; }
+  .hero-photo { margin: 0 auto; }
+  .hero-text { width: 100%; }
+}
+
+/* Accessibility: clear focus state for anchors and controls */
+a:focus, button:focus, input:focus { outline: 3px solid rgba(0,120,215,0.18); outline-offset: 3px; }
+
+
+
+/* ---------- Publications + Contact Links (custom accent + dark mode aware) ---------- */
+
+/* Define your accent colors */
+:root {
+  --link-accent-dark: #a1c2ff;  /* blue tone for light mode */
+  --link-accent-light:  #a1c2ff;  /* soft yellow-gold for dark mode */
+}
+
+/* Shared link style */
+.glass-panel .pub-link,
+.glass-panel .contact-link {
+  color: var(--link-accent-light);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: currentColor;
+  font-weight: inherit;
+  font-size: inherit;
+  transition: color 0.22s ease, text-decoration-color 0.22s ease;
+  cursor: pointer;
+}
+
+/* Hover / focus: subtle darkening for contrast */
+.glass-panel .pub-link:hover,
+.glass-panel .pub-link:focus,
+.glass-panel .contact-link:hover,
+.glass-panel .contact-link:focus {
+  color: #aac3ff;
+  text-decoration-color: #0f3da8;
+  outline: none;
+}
+
+/* Dark-mode colors */
+body.dark .glass-panel .pub-link,
+body.dark .glass-panel .contact-link {
+  color: var(--link-accent-dark);
+  text-decoration-color: var(--link-accent-dark);
+}
+
+body.dark .glass-panel .pub-link:hover,
+body.dark .glass-panel .pub-link:focus,
+body.dark .glass-panel .contact-link:hover,
+body.dark .glass-panel .contact-link:focus {
+  color: #fff5cc; /* lighter yellow on hover */
+  text-decoration-color: #fff5cc;
+}
+
+/* End of file */
