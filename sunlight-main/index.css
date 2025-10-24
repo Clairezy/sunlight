@@ -1,0 +1,572 @@
+/*
+  index.css — merged version
+  - Original stylesheet you provided is preserved below.
+  - Added a small :root with a single scale variable (--base-font-size) for easy global resizing.
+  - Added responsive HERO styles (.hero, .hero-photo, .hero-text) so the photo, name, and short about sit in the same panel.
+  - Enlarged heading/body type using calc(...) so everything scales when you tweak --base-font-size.
+
+  To change the global size: edit --base-font-size near the top (default: 18px).
+*/
+
+:root {
+  --base-font-size: 18px;
+  --hero-photo-size: 160px;
+  --max-content-width: 1100px;
+}
+
+html { font-size: var(--base-font-size); }
+
+/* ---------- Original stylesheet (preserved) ---------- */
+
+article {
+  margin: 0 auto;
+  max-width: 70%;
+  padding: 40vh 0;
+
+  color: var(--dark);
+  isolation: isolate;
+}
+
+article a {
+  color: var(--dark);
+}
+
+
+body {
+  --day: #fffdfa;
+  --evening: #fccc83;
+  --dusk: #db7a2a;
+  --night: #0f131c;
+  --dawn: #16132b;
+  --morning: #9fb3bf;
+
+
+  --light: var(--day);
+  --dark: var(--night);
+  --shadow: #1a1917;
+  --bounce-light: #f5d7a6;
+  --timing-fn: cubic-bezier(0.455, 0.190, 0.000, 0.985);
+
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--light);
+
+  animation-duration: 0s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+}
+
+body.animation-ready {
+  animation-play-state: running;
+  animation-duration: 2s;
+  animation-name: sunrise;
+}
+
+body.animation-ready.dark {
+  animation-duration: 3s;
+  animation-name: sunset;
+}
+
+body.dark {
+  --light: var(--night);
+  --dark: var(--day);
+  --shadow: #030307;
+  --bounce-light: #1b293f;
+}
+
+@keyframes sunrise {
+  0% {
+    background-color: var(--night);
+  }
+
+  10% {
+    background-color: var(--dawn);
+  }
+
+  35% {
+    background-color: var(--morning);
+  }
+
+  100% {
+    background-color: var(--day);
+  }
+}
+
+@keyframes sunset {
+  0% {
+    background-color: var(--day);
+  }
+
+  30% {
+    background-color: var(--evening);
+  }
+
+  60% {
+    background-color: var(--dusk);
+  }
+
+  90% {
+    background-color: var(--dawn);
+  }
+
+  100% {
+    background-color: var(--night);
+  }
+}
+
+#dappled-light {
+  pointer-events: none;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+}
+
+#progressive-blur {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+#progressive-blur>div {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  inset: 0;
+  backdrop-filter: blur(var(--blur-amount));
+  mask-image: linear-gradient(252deg, transparent, transparent var(--stop1), black var(--stop2), black);
+}
+
+#progressive-blur>div:nth-child(1) {
+  --blur-amount: 6px;
+  --stop1: 0%;
+  --stop2: 0%;
+}
+
+#progressive-blur>div:nth-child(2) {
+  --blur-amount: 12px;
+  --stop1: 40%;
+  --stop2: 80%;
+}
+
+#progressive-blur>div:nth-child(3) {
+  --blur-amount: 48px;
+  --stop1: 40%;
+  --stop2: 70%;
+}
+
+#progressive-blur>div:nth-child(4) {
+  --blur-amount: 96px;
+  --stop1: 70%;
+  --stop2: 80%;
+}
+
+#glow {
+  position: absolute;
+  background: linear-gradient(309deg, var(--bounce-light), var(--bounce-light) 20%, transparent);
+  transition: background 1.0s var(--timing-fn);
+  height: 100%;
+  width: 100%;
+  opacity: 0.5;
+}
+
+#glow-bounce {
+  content: "";
+  position: absolute;
+  background: linear-gradient(355deg, var(--bounce-light) 0%, transparent 30%, transparent 100%);
+  transition: background 1.0s var(--timing-fn);
+  opacity: 0.5;
+  height: 100%;
+  width: 100%;
+  bottom: 0;
+}
+
+.perspective {
+  position: absolute;
+  transition: transform 1.7s var(--timing-fn), opacity 4s ease;
+  top: -30vh;
+  right: 0;
+  width: 80vw;
+  height: 130vh;
+  opacity: 0.07;
+  background-blend-mode: darken;
+  transform-origin: top right;
+  transform-style: preserve-3d;
+  transform: matrix3d(0.7500, -0.0625, 0.0000, 0.0008,
+      0.0000, 1.0000, 0.0000, 0.0000,
+      0.0000, 0.0000, 1.0000, 0.0000,
+      0.0000, 0.0000, 0.0000, 1.0000);
+}
+
+.dark .perspective {
+  opacity: 0.3;
+  transform: matrix3d(0.8333, 0.0833, 0.0000, 0.0003,
+      0.0000, 1.0000, 0.0000, 0.0000,
+      0.0000, 0.0000, 1.0000, 0.0000,
+      0.0000, 0.0000, 0.0000, 1.0000);
+}
+
+#leaves {
+  position: absolute;
+  background-size: cover;
+  background-repeat: no-repeat;
+  bottom: -20px;
+  right: -700px;
+  width: 1600px;
+  height: 1400px;
+  background-image: url("./leaves.png");
+  filter: url(#wind);
+  animation: billow 8s ease-in-out infinite;
+}
+
+#blinds {
+  position: relative;
+  width: 100%;
+}
+
+#blinds .shutter,
+#blinds .bar {
+  background-color: var(--shadow);
+}
+
+#blinds>.shutters {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 60px;
+  transition: gap 1.0s var(--timing-fn);
+}
+
+.dark #blinds>.shutters {
+  gap: 20px;
+}
+
+#blinds>.vertical {
+  top: 0;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.vertical>.bar {
+  width: 5;
+  height: 100%;
+}
+
+.shutter {
+  width: 100%;
+  height: 40px;
+  transition: height 1.0s var(--timing-fn);
+}
+
+.dark .shutter {
+  height: 80px;
+}
+
+@keyframes billow {
+  0% {
+    transform: perspective(400px) rotateX(0deg) rotateY(0deg) scale(1);
+  }
+
+  25% {
+    transform: perspective(400px) rotateX(1deg) rotateY(2deg) scale(1.02);
+  }
+
+  50% {
+    transform: perspective(400px) rotateX(-4deg) rotateY(-2deg) scale(0.97);
+  }
+
+  75% {
+    transform: perspective(400px) rotateX(1deg) rotateY(-1deg) scale(1.04);
+  }
+
+  100% {
+    transform: perspective(400px) rotateX(0deg) rotateY(0deg) scale(1);
+  }
+}
+/* Apply Noto Sans JP to everything */
+body, article, section, h1, h2, p, ul, li, a {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+/* Slight adjustments to glass panels for clarity on text-heavy pages */
+.glass-panel {
+  margin: 40px auto;
+  padding: 30px 40px;
+  max-width: 80%;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 32px rgba(0,0,0,0.1);
+  color: var(--dark);
+  transition: background 0.5s ease, color 0.5s ease;
+} 
+.glass-panel a {
+  color: var(--dark);
+  text-decoration: underline;
+}
+
+.glass-panel h2 {
+  margin-top: 0;
+}
+
+.glass-panel ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.glass-panel li {
+  margin-bottom: 10px;
+}
+
+/* Optional: adjust spacing inside article */
+article p, article h1 {
+  text-align: center;
+}
+
+/* Top header bar */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 1000;
+  color: var(--dark);
+  font-weight: 500;
+}
+
+/* Site title on left */
+.site-header .site-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+/* Controls container on right */
+.sun-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Slider styling */
+#daynight-slider {
+  width: 200px;
+  height: 6px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.25);
+  -webkit-appearance: none;
+}
+
+#daynight-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--dark);
+  cursor: pointer;
+  border: 2px solid var(--bounce-light);
+  transition: background 0.3s ease, border 0.3s ease;
+}
+
+#daynight-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--dark);
+  border: 2px solid var(--bounce-light);
+  cursor: pointer;
+  transition: background 0.3s ease, border 0.3s ease;
+}
+
+/* Button styling */
+#daynight-toggle {
+  padding: 6px 12px;
+  background-color: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: var(--dark);
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+#daynight-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+/* Navigation menu in header */
+.site-nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.site-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.site-nav a {
+  color: var(--dark);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.site-nav a:hover,
+.site-nav a:focus {
+  color: var(--bounce-light);
+}
+
+/* Adjust header layout to accommodate nav */
+.site-header {
+  justify-content: space-between; /* title left, nav + controls right */
+}
+
+.site-header .site-title {
+  flex-shrink: 0;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  margin-left: 0;
+}
+
+.sun-controls {
+  margin-left: 0;
+}
+
+/* ---------- Additions: global type scale & HERO panel ---------- */
+
+/* slightly larger base text inside panels for legibility */
+.glass-panel, .site-footer {
+  font-size: 1rem; /* scales from --base-font-size */
+}
+
+/* headings scaled from base font-size so changing --base-font-size updates everything */
+h1 { font-size: calc(var(--base-font-size) * 2.2); margin: 0 0 .25rem 0; }
+h2 { font-size: calc(var(--base-font-size) * 1.35); margin-top: 0; }
+p, li { font-size: calc(var(--base-font-size) * 1.02); }
+
+/* HERO layout (photo, name, short about inside same panel) */
+.hero {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+  padding: 2rem;
+  max-width: var(--max-content-width);
+  margin: 1.5rem auto;
+  box-sizing: border-box;
+  background: rgba(255,255,255,0.06); /* subtle contrast so it reads on top of background */
+}
+
+.hero-photo {
+  flex: 0 0 auto;
+  width: var(--hero-photo-size);
+  height: var(--hero-photo-size);
+  border-radius: 12px;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.03));
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.hero-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-text {
+  flex: 1 1 auto;
+  min-width: 240px;
+}
+
+.tagline {
+  font-weight: 500;
+  margin: 0.25rem 0 0.6rem 0;
+  letter-spacing: 0.02em;
+}
+
+.about-short {
+  margin: 0;
+  opacity: 0.95;
+}
+
+
+
+@media (max-width: 720px) {
+  :root { --hero-photo-size: 140px; }
+  .hero { flex-direction: column; text-align: center; gap: 1rem; padding: 1.25rem; }
+  .hero-photo { margin: 0 auto; }
+  .hero-text { width: 100%; }
+}
+
+/* Accessibility: clear focus state for anchors and controls */
+a:focus, button:focus, input:focus { outline: 3px solid rgba(0,120,215,0.18); outline-offset: 3px; }
+
+
+
+/* ---------- Publications + Contact Links (custom accent + dark mode aware) ---------- */
+
+/* Define your accent colors */
+:root {
+  --link-accent-dark: #a1c2ff;  /* blue tone for light mode */
+  --link-accent-light:  #a1c2ff;  /* soft yellow-gold for dark mode */
+}
+
+/* Shared link style */
+.glass-panel .pub-link,
+.glass-panel .contact-link {
+  color: var(--link-accent-light);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: currentColor;
+  font-weight: inherit;
+  font-size: inherit;
+  transition: color 0.22s ease, text-decoration-color 0.22s ease;
+  cursor: pointer;
+}
+
+/* Hover / focus: subtle darkening for contrast */
+.glass-panel .pub-link:hover,
+.glass-panel .pub-link:focus,
+.glass-panel .contact-link:hover,
+.glass-panel .contact-link:focus {
+  color: #aac3ff;
+  text-decoration-color: #0f3da8;
+  outline: none;
+}
+
+/* Dark-mode colors */
+body.dark .glass-panel .pub-link,
+body.dark .glass-panel .contact-link {
+  color: var(--link-accent-dark);
+  text-decoration-color: var(--link-accent-dark);
+}
+
+body.dark .glass-panel .pub-link:hover,
+body.dark .glass-panel .pub-link:focus,
+body.dark .glass-panel .contact-link:hover,
+body.dark .glass-panel .contact-link:focus {
+  color: #fff5cc; /* lighter yellow on hover */
+  text-decoration-color: #fff5cc;
+}
+
+/* End of file */

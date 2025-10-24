@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Claire K. Zwicker — Research Website</title>
+
+  <!-- Noto Sans JP -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./index.css">
+
+  <!-- Small, local override to ensure portrait + name + about sit centered in the same panel -->
+  <style>
+    /* Keeps this change small and robust across your existing stylesheet */
+    .hero-panel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1rem;
+      padding: 2rem 2.5rem;
+      margin: 2rem auto;
+      max-width: 1000px;
+    }
+
+    .hero-photo {
+      width: 220px;
+      height: 220px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.03));
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-heading {
+      margin: 0;
+      font-size: 2.2rem; /* scales with your CSS if you change root font-size */
+      line-height: 1;
+    }
+
+    .hero-tagline {
+      margin: 0;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-about {
+      max-width: 80ch;
+      margin: 0;
+      font-size: 1.02rem;
+    }
+
+    /* Responsive tweak */
+    @media (max-width: 720px) {
+      .hero-photo { width: 160px; height: 160px; }
+      .hero-panel { padding: 1.25rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Top fixed header with persistent name at left and day/night controls at right -->
+  <header class="site-header" role="banner" aria-label="Site header">
+    <div class="site-title">Claire K. Zwicker</div>
+
+    <nav class="site-nav" role="navigation" aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="cv.html">CV</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="undergrad.html">Past Research</a></li>
+      </ul>
+    </nav>
+
+    <div class="sun-controls" role="region" aria-label="Day and night controls">
+      <button id="daynight-toggle" type="button" aria-pressed="true" aria-label="Toggle day and night">
+        Toggle Time of Day
+      </button>
+
+      <label for="daynight-slider" class="visually-hidden"></label>
+      <input id="daynight-slider" type="range" min="0" max="100" value="51"
+             aria-label="Day to night slider (0 = night, 100 = day)">
+      <div id="daynight-value" aria-hidden="true">51%</div>
+    </div>
+  </header>
+
+  <div id="dappled-light">
+    <div id="glow"></div>
+    <div id="glow-bounce"></div>
+    <div class="perspective">
+      <div id="leaves">
+        <svg style="width: 0; height: 0; position: absolute;">
+          <defs>
+            <filter id="wind" x="-20%" y="-20%" width="140%" height="140%">
+              <feTurbulence type="fractalNoise" numOctaves="4" seed="1">
+                <animate attributeName="baseFrequency" dur="10s" keyTimes="0;0.33;0.66;1"
+                  values="0.005 0.003;0.01 0.009;0.008 0.004;0.005 0.003" repeatCount="indefinite" />
+              </feTurbulence>
+              <feDisplacementMap in="SourceGraphic">
+                <animate attributeName="scale" dur="20s" keyTimes="0;0.25;0.5;0.75;1"
+                  values="45;55;75;55;45" repeatCount="indefinite" />
+              </feDisplacementMap>
+            </filter>
+          </defs>
+        </svg>
+      </div>
+
+      <div id="blinds">
+        <div class="shutters">
+          <!-- PRESERVED: kept all shutter divs exactly as you had them -->
+          <div class="shutter"></div>
+          <div class="shutter"></div>
+          <div class="shutter"></div>
+          <div class="shutter"></div>
+          <div class="shutter"></div>
+          <div class="shutter"></div>
+          <div class="shutter"></div>
+          <div class="shutter"></div>
+          <div class="shutter"></div>
+          <div class="shutter"></div>
+          <div class="shutter"></div>
+          <div class="shutter"></div>
+          <div class="shutter"></div>
+          <div class="shutter"></div>
+          <div class="shutter"></div>
+        </div>
+        <div class="vertical">
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="progressive-blur">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+
+  <article>
+
+    <!-- HERO: portrait (centered), name, tagline and short about inside one panel -->
+    <section class="glass-panel hero-panel" id="about-hero" aria-labelledby="hero-heading">
+      <figure class="hero-photo" aria-hidden="false">
+        <!-- Replace the src with your portrait path -->
+        <img src="./data/portrait.jpg" alt="Portrait of Claire K. Zwicker" width="1200" height="1200" loading="lazy">
+      </figure>
+
+      <div class="hero-text">
+        <h1 id="hero-heading" class="hero-heading" style="font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 800; line-height: 1; margin: 0 0 0.25rem 0;"> Claire K. Zwicker</h1>
+        <p class="hero-tagline" style="margin-top: 1em;"><strong>Astronomy • PhD Student • Research in young stellar populations</strong></p>
+        <p class="hero-about" style="margin-top: 1em;">
+          I am a graduate student studying the connection between lithium and stellar rotation in young populations.
+          My work combines observational data with data analysis &amp; visualization to constrain physical models and
+          interpret statistical tests. I care deeply about scientific communication, outreach, and lifelong learning.
+        </p>
+      </div>
+    </section>
+
+    <!-- Research (kept as separate panels) -->
+    <section class="glass-panel" id="research">
+      <h1>Research Overview</h1>
+      <p>My current and past projects include:</p>
+      <ul>
+        <li><strong>Lithium-rotation connection</strong> for young stars within the Upper Scorpius region.</li>
+        <li><strong>Age dating</strong> TOI 7032, a peculiar host star that may help us understand more on the origins of life.</li>
+        <li><strong>Bayesian data analysis</strong> of an Open Cluster to study the dynamical evolution of its stellar members. </li>
+      </ul>
+    </section>
+
+    <section class="glass-panel" id="projects">
+      <h1>Projects & Code</h1>
+      <p>I produce and maintain workflows supporting my research. A few highlights:</p>
+      <ul>
+        <li><strong>Coming soon!</strong> (in progress). </li>
+      </ul>
+    </section>
+
+    <section class="glass-panel" id="publications">
+  <h1>Peer-Reviewed Publications & Manuscripts</h1>
+  <ol class="pub-list">
+    <li>
+      <strong>
+        <a href="#" class="pub-link" title="Placeholder — replace with DOI or arXiv"
+           aria-label="Stellar Rotation and Microturbulence as Key Predictors in a Young Stellar Population (link)">
+          Stellar Rotation and Microturbulence as Key Predictors in a Young Stellar Population
+        </a>
+      </strong>
+      — <span class="pub-authors"><strong>Claire Zwicker</strong>, Melinda Soares-Furtado, Jessi Cisewski Kehe, Kendall Sullivan</span>, <em>In preparation</em>.
+    </li>
+
+    <li>
+      <strong>
+        <a href="#" class="pub-link" title="Placeholder — replace with DOI or arXiv"
+           aria-label="Investigation of TOI 7032 (link)">
+          Investigation of TOI 7032
+        </a>
+      </strong>
+      — <span class="pub-authors">Maxwell Kroft <em>et al.</em> (including <strong>Claire Zwicker</strong>)</span>, <em>In preparation</em>.
+    </li>
+
+    <li>
+      <strong>
+        <a href="https://ui.adsabs.harvard.edu/abs/2024ApJ...967...44Z/abstract" class="pub-link"
+           title="Investigating Mass Segregation of the Binary Stars in the Open Cluster NGC 6819 — ADS abstract"
+           aria-label="Investigating Mass Segregation of the Binary Stars in the Open Cluster NGC 6819 (ADS link)"
+           target="_blank" rel="noopener noreferrer">
+          Investigating Mass Segregation of the Binary Stars in the Open Cluster NGC 6819
+        </a>
+      </strong>
+      — <span class="pub-authors"><strong>Claire Zwicker</strong>, Aaron M. Geller, Anna C. Childs, Erin Motherway, Ted von Hippel</span>, <em>Published in ApJ</em>.
+    </li>
+
+    <li>
+      <strong>
+        <a href="https://ui.adsabs.harvard.edu/abs/2024ApJ...962...41C/abstract" class="pub-link"
+           title="Goodbye to Chi-by-Eye: A Bayesian Analysis of Photometric Binaries in Six Open Clusters — ADS abstract"
+           aria-label="Goodbye to Chi-by-Eye: A Bayesian Analysis of Photometric Binaries in Six Open Clusters (ADS link)"
+           target="_blank" rel="noopener noreferrer">
+          Goodbye to Chi-by-Eye: A Bayesian Analysis of Photometric Binaries in Six Open Clusters
+        </a>
+      </strong>
+      — <span class="pub-authors">Anna C. Childs, Aaron M. Geller, Ted von Hippel, Erin Motherway, <strong>Claire Zwicker</strong></span>, <em>Published in ApJ</em>.
+    </li>
+
+    <li>
+      <strong>
+        <a href="https://ui.adsabs.harvard.edu/abs/2024ApJ...962L...9M/abstract" class="pub-link"
+           title="Tracing the Origins of Mass Segregation in M35 — ADS abstract"
+           aria-label="Tracing the Origins of Mass Segregation in M35 (ADS link)"
+           target="_blank" rel="noopener noreferrer">
+          Tracing the Origins of Mass Segregation in M35
+        </a>
+      </strong>
+      — <span class="pub-authors">Erin Motherway, Aaron M. Geller, Anna C. Childs, <strong>Claire Zwicker</strong>, Ted von Hippel</span>, <em>Published in ApJL</abbr></em>.
+    </li>
+  </ol>
+</section>
+
+
+    <section class="glass-panel" id="contact">
+      <h1>Contact & Presence</h1>
+      <p>Email: <a href="mailto:czwicker@wisc.edu">czwicker@wisc.edu</a></p>
+      <p>ORCID ID: <a href="https://orcid.org/0000-0003-3695-2655">0000-0003-3695-2655</a></p>
+      <p>Github: <a href="https://github.com/clairezwicker" target="_blank" rel="noopener">github.com/clairezwicker</a></p>
+      <p>LinkedIn: <a href="https://www.linkedin.com/in/claire-zwicker-74a7b4250/" target="_blank" rel="noopener">linkedin.com/in/claire-zwicker-74a7b4250/</a></p>
+    </section>
+
+  </article>
+
+  <script src="./index.js"></script>
+</body>
+<footer class="site-footer glass-panel" style="text-align: center; font-size: 0.9rem; margin-top: 2rem; padding: 1rem;">
+  <p>
+    This personal website was created by modifying 
+    <a href="https://github.com/jackyzha0/sunlit" target="_blank" rel="noopener">Sunlit</a> with the assistance of AI tools.
+  </p>
+</footer>
+
+</html>
