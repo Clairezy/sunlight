@@ -1,4 +1,4 @@
-Claire K. Zwicker — Personal Research Website
+# Claire K. Zwicker — Personal Research Website
 
-Static website for Claire K. Zwicker, built from a modified Sunlit template.
+My personal website, built by modifying Jacky Zhao's **[Sunlit](https://github.com/jackyzha0/sunlit)** template.  
 This site presents my research, publications, and contact information in a single-page design using HTML, CSS, and JavaScript.
